@@ -1,0 +1,47 @@
+﻿@page
+@model CreateModel
+@{
+}
+
+<h2>New Movie</h2>
+
+<form method="post">
+    <div asp-validation-summary="All"></div>
+    
+    <div>
+        <label asp-for="Movie.Id"></label>
+        <div>
+            <input asp-for="Movie.Id" />
+            <span asp-validation-for="Movie.Id"></span>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="Movie.Title"></label>
+        <div>
+            <input asp-for="Movie.Title" />
+            <span asp-validation-for="Movie.Title"></span>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="Movie.ReleaseYear"></label>
+        <div>
+            <input asp-for="Movie.ReleaseYear" />
+            <span asp-validation-for="Movie.ReleaseYear"></span>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="Movie.Summary"></label>
+        <div>
+            <textarea asp-for="Movie.Summary"></textarea>
+            <span asp-validation-for="Movie.Summary"></span>
+        </div>
+    </div>
+
+    <div>
+        <button type="submit">Save</button>
+        <a asp-page="./Index">Cancel</a>
+    </div>
+</form>

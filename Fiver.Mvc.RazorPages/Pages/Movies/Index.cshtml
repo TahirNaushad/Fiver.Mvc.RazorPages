@@ -1,0 +1,45 @@
+﻿@page
+@model IndexModel
+@{
+}
+
+<h2>Movie Listing</h2>
+
+<div>
+    <a asp-page="/Index">Home</a> | 
+    <a asp-page="./Create">Add New</a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Year</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Movies)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.ReleaseYear</td>
+                <td><a asp-page="./Edit" asp-route-id="@item.Id">Edit</a></td>
+                <td><a asp-page="./Delete" asp-route-id="@item.Id">Delete (page)</a></td>
+                <td><a asp-page="./Index" 
+                       asp-page-handler="delete1"
+                       asp-route-id="@item.Id">Delete (get)</a>
+                </td>
+                <td>
+                    <form method="post">
+                        <button type="submit" 
+                                asp-page-handler="delete2"
+                                asp-route-id="@item.Id">Delete (post)</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
