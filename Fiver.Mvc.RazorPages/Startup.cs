@@ -12,6 +12,11 @@ namespace Fiver.Mvc.RazorPages
         {
             services.AddSingleton<IMovieService, MovieService>();
             services.AddMvc();
+            //services.AddMvc()
+            //        .AddRazorPagesOptions(options =>
+            //        {
+            //            //options.Conventions.AddPageRoute("/Movies/Index", "");
+            //        });
         }
 
         public void Configure(
