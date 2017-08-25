@@ -15,7 +15,7 @@ namespace Fiver.Mvc.RazorPages
             //services.AddMvc()
             //        .AddRazorPagesOptions(options =>
             //        {
-            //            //options.Conventions.AddPageRoute("/Movies/Index", "");
+            //            options.RootDirectory = "/MyPages";
             //        });
         }
 

@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{handler?}/{id:int?}"
 @model IndexModel
 @{
 }
@@ -28,7 +28,8 @@
                 <td>@item.ReleaseYear</td>
                 <td><a asp-page="./Edit" asp-route-id="@item.Id">Edit</a></td>
                 <td><a asp-page="./Delete" asp-route-id="@item.Id">Delete (page)</a></td>
-                <td><a asp-page="./Index" 
+                <td>
+                    <a asp-page="./Index" 
                        asp-page-handler="delete1"
                        asp-route-id="@item.Id">Delete (get)</a>
                 </td>
