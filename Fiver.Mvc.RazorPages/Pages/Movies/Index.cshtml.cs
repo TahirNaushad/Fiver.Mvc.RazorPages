@@ -20,7 +20,16 @@ namespace Fiver.Mvc.RazorPages.Pages.Movies
 
         public void OnGet()
         {
-            this.Movies = ToOutputModel(this.service.GetMovies());
+            this.Movies = this.service.GetMovies()
+                                      .Select(item => new MovieOutputModel
+                                      {
+                                          Id = item.Id,
+                                          Title = item.Title,
+                                          ReleaseYear = item.ReleaseYear,
+                                          Summary = item.Summary,
+                                          LastReadAt = DateTime.Now
+                                      })
+                                      .ToList();
         }
 
         public IActionResult OnGetDelete1(int id)
@@ -42,27 +51,5 @@ namespace Fiver.Mvc.RazorPages.Pages.Movies
 
             return RedirectToPage("./Index");
         }
-
-        #region " Mappings "
-
-        private MovieOutputModel ToOutputModel(Movie model)
-        {
-            return new MovieOutputModel
-            {
-                Id = model.Id,
-                Title = model.Title,
-                ReleaseYear = model.ReleaseYear,
-                Summary = model.Summary,
-                LastReadAt = DateTime.Now
-            };
-        }
-
-        private List<MovieOutputModel> ToOutputModel(List<Movie> model)
-        {
-            return model.Select(item => ToOutputModel(item))
-                        .ToList();
-        }
-        
-        #endregion
     }
 }

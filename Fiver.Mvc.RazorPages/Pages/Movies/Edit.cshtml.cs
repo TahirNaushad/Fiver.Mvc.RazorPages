@@ -22,7 +22,13 @@ namespace Fiver.Mvc.RazorPages.Pages.Movies
             if (model == null)
                 return RedirectToPage("./Index");
 
-            this.Movie = ToInputModel(model);
+            this.Movie = new MovieInputModel
+            {
+                Id = model.Id,
+                Title = model.Title,
+                ReleaseYear = model.ReleaseYear,
+                Summary = model.Summary
+            };
             return Page();
         }
 
@@ -31,36 +37,16 @@ namespace Fiver.Mvc.RazorPages.Pages.Movies
             if (!ModelState.IsValid)
                 return Page();
 
-            var model = ToDomainModel(this.Movie);
+            var model = new Movie
+            {
+                Id = this.Movie.Id,
+                Title = this.Movie.Title,
+                ReleaseYear = this.Movie.ReleaseYear,
+                Summary = this.Movie.Summary
+            };
             service.UpdateMovie(model);
 
             return RedirectToPage("./Index");
         }
-
-        #region " Mappings "
-        
-        private MovieInputModel ToInputModel(Movie model)
-        {
-            return new MovieInputModel
-            {
-                Id = model.Id,
-                Title = model.Title,
-                ReleaseYear = model.ReleaseYear,
-                Summary = model.Summary
-            };
-        }
-
-        private Movie ToDomainModel(MovieInputModel inputModel)
-        {
-            return new Movie
-            {
-                Id = inputModel.Id,
-                Title = inputModel.Title,
-                ReleaseYear = inputModel.ReleaseYear,
-                Summary = inputModel.Summary
-            };
-        }
-
-        #endregion
     }
 }

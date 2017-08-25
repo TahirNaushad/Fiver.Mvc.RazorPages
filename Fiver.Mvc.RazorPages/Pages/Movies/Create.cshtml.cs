@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Fiver.Mvc.RazorPages.OtherLayers;
@@ -30,25 +26,16 @@ namespace Fiver.Mvc.RazorPages.Pages.Movies
             if (!ModelState.IsValid)
                 return Page();
 
-            var model = ToDomainModel(this.Movie);
+            var model = new Movie
+            {
+                Id = this.Movie.Id,
+                Title = this.Movie.Title,
+                ReleaseYear = this.Movie.ReleaseYear,
+                Summary = this.Movie.Summary
+            };
             service.AddMovie(model);
 
             return RedirectToPage("./Index");
         }
-
-        #region " Mappings "
-        
-        private Movie ToDomainModel(MovieInputModel inputModel)
-        {
-            return new Movie
-            {
-                Id = inputModel.Id,
-                Title = inputModel.Title,
-                ReleaseYear = inputModel.ReleaseYear,
-                Summary = inputModel.Summary
-            };
-        }
-
-        #endregion
     }
 }
